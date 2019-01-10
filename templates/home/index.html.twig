@@ -1,0 +1,15 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+
+
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+
+{% block body %}
+    {% block slider %}{% include('home/_slider.html.twig') %}{% endblock %}
+    {% block content %}{% include('home/_content.html.twig') %}{% endblock %}
+{% endblock %}
+

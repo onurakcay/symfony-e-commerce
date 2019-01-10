@@ -1,0 +1,49 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1>Göster</h1>
+        <div class="row"style="margin-top:3%">
+            <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ category.id }}</td>
+            </tr>
+            <tr>
+                <th>Parentid</th>
+                <td>{{ category.parentid }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ category.title }}</td>
+            </tr>
+            <tr>
+                <th>Keywords</th>
+                <td>{{ category.keywords }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ category.description }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ category.status }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_category_index') }}" class="btn btn-block btn-warning"title="Back"><i class="material-icons">arrow_back_ios</i></a>
+    <a href="{{ path('admin_category_edit', {'id': category.id}) }}"class="btn btn-block btn-secondary"title="Edit"><i class="material-icons">edit</i></a>
+            {{ include('admin/category/_delete_form.html.twig') }}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

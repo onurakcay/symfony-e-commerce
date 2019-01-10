@@ -1,0 +1,210 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %}Üye Kaydı{% endblock %}
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+{% block body %}
+
+<div class="row"style="margin-top:10%">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="list-group">
+<h1>Zaten Giriş Yaptın</h1>
+            <a href="#" class="list-group-item active" style="cursor:not-allowed"><i class="fa fa-key"></i> <span>Kullanıcı Ayarları</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-credit-card"></i> <span>Bilgilerim</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-question-circle"></i> <span>Düzenle</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-arrow-circle-o-left"></i> <span>Siparişlerim</span></a>
+            <a href="{{ path('shopcart_index') }}" class="list-group-item"><i class="fa fa-book"></i> <span>Sepetim</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-compass"></i> <span>Favori Ürünlerim</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-compass"></i> <span>Sipariş Geçmişi</span></a>
+            <a href="#" class="list-group-item"><i class="fa fa-compass"></i> <span>Yorumlarım</span></a>
+            {% for item in app.user.roles %}
+                {% if item == "ROLE_ADMIN" %} <a style="color:white;background-color: #C9302C"href="{{ path('admin') }}" class="list-group-item"> <i class="fa fa-compass"></i> <span>Admin Paneli</span></a>{% endif %}
+            {% endfor %}
+            <a href="{{ path('app_logout') }}" class="list-group-item"><i class="fa fa-compass"></i> <span>Çıkış</span></a>
+
+
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <table class="table table-bordered table-light">
+            <thead>
+            <tr>
+                <th scope="col">Ad</th>
+                <th scope="col">{{ app.user.name }}</th>
+            </tr>
+            <tr>
+                <th scope="col">Mail</th>
+                <th scope="col">{{ app.user.email }}</th>
+            </tr>
+            <tr>
+                <th scope="col">Yetki</th>
+                <th scope="col">{% for item in app.user.roles %}{% if item == "ROLE_ADMIN" %}<b style="color:red">Yönetici</b>{% else %}Kullanıcı{% endif %}{%  endfor %}</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+{% else %}
+    <div class="products">
+        <center>
+            <div class="container"style="text-align: left">
+                <div class="row">
+                    <div class="col">
+            {{ include('messages.html.twig') }}
+        <div class="well">
+            <h1>Kayıt Ol!</h1>
+            <form action="#" method="post" class="form-horizontal">
+                <div class="form-group row">
+                    <div class="col-lg-6">
+                    <label for="" class="control-label">Adı</label>
+                    <input name="user[name]" type="text" class="form-control" value="" required>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="" class="control-label">Email</label>
+                        <input name="user[email]" type="email" class="form-control" value=""required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <label for="" class="control-label">Adress</label>
+                        <input name="user[adress]" type="text" class="form-control" value=""required>
+                    </div>
+                    <div class="col-lg-12">
+                        <label for="" class="control-label">Telefon</label>
+                        <input name="user[phone]" type="tel" class="form-control" value=""required>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-12">
+                    <label for="" class="control-label">Şifre</label>
+                    <input name="user[password]" type="password" class="form-control" value=""required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="" class="control-label">Şehir</label>
+                    <select name="user[city]">
+                        <option value="İstanbul">İstanbul</option>
+                        <option value="Ankara">Ankara</option>
+                        <option value="İzmir">İzmir</option>
+                        <option value="Adana">Adana</option>
+                        <option value="Adıyaman">Adıyaman</option>
+                        <option value="Afyonkarahisar">Afyonkarahisar</option>
+                        <option value="Ağrı">Ağrı</option>
+                        <option value="Aksaray">Aksaray</option>
+                        <option value="Amasya">Amasya</option>
+                        <option value="Antalya">Antalya</option>
+                        <option value="Ardahan">Ardahan</option>
+                        <option value="Artvin">Artvin</option>
+                        <option value="Aydın">Aydın</option>
+                        <option value="Balıkesir">Balıkesir</option>
+                        <option value="Bartın">Bartın</option>
+                        <option value="Batman">Batman</option>
+                        <option value="Bayburt">Bayburt</option>
+                        <option value="Bilecik">Bilecik</option>
+                        <option value="Bingöl">Bingöl</option>
+                        <option value="Bitlis">Bitlis</option>
+                        <option value="Bolu">Bolu</option>
+                        <option value="Burdur">Burdur</option>
+                        <option value="Bursa">Bursa</option>
+                        <option value="Çanakkale">Çanakkale</option>
+                        <option value="Çankırı">Çankırı</option>
+                        <option value="Çorum">Çorum</option>
+                        <option value="Denizli">Denizli</option>
+                        <option value="Diyarbakır">Diyarbakır</option>
+                        <option value="Düzce">Düzce</option>
+                        <option value="Edirne">Edirne</option>
+                        <option value="Elazığ">Elazığ</option>
+                        <option value="Erzincan">Erzincan</option>
+                        <option value="Erzurum">Erzurum</option>
+                        <option value="Eskişehir">Eskişehir</option>
+                        <option value="Gaziantep">Gaziantep</option>
+                        <option value="Giresun">Giresun</option>
+                        <option value="Gümüşhane">Gümüşhane</option>
+                        <option value="Hakkâri">Hakkâri</option>
+                        <option value="Hatay">Hatay</option>
+                        <option value="Iğdır">Iğdır</option>
+                        <option value="Isparta">Isparta</option>
+                        <option value="Kahramanmaraş">Kahramanmaraş</option>
+                        <option value="Karabük">Karabük</option>
+                        <option value="Karaman">Karaman</option>
+                        <option value="Kars">Kars</option>
+                        <option value="Kastamonu">Kastamonu</option>
+                        <option value="Kayseri">Kayseri</option>
+                        <option value="Kırıkkale">Kırıkkale</option>
+                        <option value="Kırklareli">Kırklareli</option>
+                        <option value="Kırşehir">Kırşehir</option>
+                        <option value="Kilis">Kilis</option>
+                        <option value="Kocaeli">Kocaeli</option>
+                        <option value="Konya">Konya</option>
+                        <option value="Kütahya">Kütahya</option>
+                        <option value="Malatya">Malatya</option>
+                        <option value="Manisa">Manisa</option>
+                        <option value="Mardin">Mardin</option>
+                        <option value="Mersin">Mersin</option>
+                        <option value="Muğla">Muğla</option>
+                        <option value="Muş">Muş</option>
+                        <option value="Nevşehir">Nevşehir</option>
+                        <option value="Niğde">Niğde</option>
+                        <option value="Ordu">Ordu</option>
+                        <option value="Osmaniye">Osmaniye</option>
+                        <option value="Rize">Rize</option>
+                        <option value="Sakarya">Sakarya</option>
+                        <option value="Samsun">Samsun</option>
+                        <option value="Siirt">Siirt</option>
+                        <option value="Sinop">Sinop</option>
+                        <option value="Sivas">Sivas</option>
+                        <option value="Şırnak">Şırnak</option>
+                        <option value="Tekirdağ">Tekirdağ</option>
+                        <option value="Tokat">Tokat</option>
+                        <option value="Trabzon">Trabzon</option>
+                        <option value="Tunceli">Tunceli</option>
+                        <option value="Şanlıurfa">Şanlıurfa</option>
+                        <option value="Uşak">Uşak</option>
+                        <option value="Van">Van</option>
+                        <option value="Yalova">Yalova</option>
+                        <option value="Yozgat">Yozgat</option>
+                        <option value="Zonguldak">Zonguldak</option>
+                    </select>
+                </div>
+                <input type="hidden" name="token"
+                       value="{{ csrf_token('user-form') }}"
+                >
+                <input name="user[roles]" type="hidden" class="form-control" value="ROLE_USER">
+                <input name="user[status]" type="hidden" class="form-control" value="False">
+
+                <button type="submit" class="btn btn-primary btn-large">Kaydet</button>
+                <a style="float:right" href="{{ path('app_login') }}">Hesabın var mı ?</a>
+            </form>
+        </div>
+                    </div>
+                </div>
+                </div>
+        </center>
+    </div>
+    {% endif %}
+<script>
+    $(function () {
+    $('.navbar-toggle').click(function () {
+    $('.navbar-nav').toggleClass('slide-in');
+    $('.side-body').toggleClass('body-slide-in');
+    $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+    /// uncomment code for absolute positioning tweek see top comment in css
+    //$('.absolute-wrapper').toggleClass('slide-in');
+
+    });
+
+    // Remove menu for searching
+    $('#search-trigger').click(function () {
+    $('.navbar-nav').removeClass('slide-in');
+    $('.side-body').removeClass('body-slide-in');
+
+    /// uncomment code for absolute positioning tweek see top comment in css
+    //$('.absolute-wrapper').removeClass('slide-in');
+
+    });
+    });</script>
+{% endblock %}

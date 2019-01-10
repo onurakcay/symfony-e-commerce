@@ -1,0 +1,58 @@
+{% extends 'frontbase.html.twig' %}
+{% block sepet %} {{ sepet[0].sepetsayisi }} {% endblock %}
+{% block title %}Sipariş Listesi{% endblock %}
+
+{% block body %}
+    <div class="products"style="margin-top: 10%;">
+        <center>
+            <div class="container"style="text-align: left">
+                <div class="row">
+                    <div class="col">
+    {{ include('messages.html.twig') }}
+        <h1>SİPRİŞLERİM</h1>
+        <table class="table table-bordered table-light"style="color: #000;">
+        <thead>
+            <tr>
+
+                <th>Fiyat</th>
+                <th>Ad</th>
+                <th>Sipariş Adresi</th>
+                <th>Şehir</th>
+                <th>Telefon</th>
+                <th>Gönderim Bilgisi</th>
+                <th>Gönderim Durumu</th>
+                <th>Not</th>
+                <th>Görüntüle</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for order in orders %}
+            <tr>
+
+                <td>{{ order.amount }} TL</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.address }}</td>
+                <td>{{ order.city }}</td>
+                <td>{{ order.phone }}</td>
+                <td>{{ order.shipinfo }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.note }}</td>
+                <td>
+                    <a href="{{ path('orders_show', {'id': order.id}) }}">Görüntüle</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+{% endblock %}

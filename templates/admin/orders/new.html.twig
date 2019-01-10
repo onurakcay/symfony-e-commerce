@@ -1,0 +1,10 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}New Orders{% endblock %}
+{% block sepet %} {{ sepet[0].sepetsayisi }} {% endblock %}
+{% block body %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles') }}/checkout.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles') }}/checkout_responsive.css">
+
+    {{ include('orders/_form.html.twig', {'button_label': 'Update'}) }}
+{% endblock %}

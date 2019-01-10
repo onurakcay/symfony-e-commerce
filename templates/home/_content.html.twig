@@ -1,0 +1,125 @@
+<!-- Home -->
+
+
+
+<!-- Ads -->
+
+
+
+<!-- Products -->
+
+<div class="products">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+                <div class="product_grid">
+
+                    <!-- Product -->
+                    {% for rs in products %}
+                    <div class="product">
+                        <div class="product_image"><img height="250px" width="350px" src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=""></div>
+                        <div class="product_extra product_new"><a href="categories.html">New</a></div>
+                        <div class="product_content">
+                            <div class="product_title"><a href="/product/{{ rs.id }}">{{ rs.title }}</a></div>
+                            <div class="product_price">{{ rs.sprice }} TL</div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ad -->
+
+<div class="avds_xl">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="avds_xl_container clearfix">
+                    <div class="avds_xl_background" style="background-image:url({{ asset('images') }}/avds_xl.jpg)"></div>
+                    <div class="avds_xl_content">
+                        <div class="avds_title">İnanılmaz Ürünler</div>
+                        <div class="avds_text">Beats'in çok satan son model ürünleri yakında burada.</div>
+                       {# <div class="avds_link avds_xl_link"><a href="categories.html">See More</a></div>#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Icon Boxes -->
+
+<div class="icon_boxes">
+    <div class="container">
+        <div class="row icon_box_row">
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box">
+                    <div class="icon_box_image"><img src="{{ asset('images') }}/icon_1.svg" alt=""></div>
+                    <div class="icon_box_title">Türkiye içi ücretsiz kargo</div>
+                    <div class="icon_box_text">
+                        <p>Yutr içi kargo güvencesiyle 81 ile ücretsiz kargo.<small>(kargonun ulaşma garantisi yoktur)</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box">
+                    <div class="icon_box_image"><img src="{{ asset('images') }}/icon_2.svg" alt=""></div>
+                    <div class="icon_box_title">Ücretsiz İade</div>
+                    <div class="icon_box_text">
+                        <p>Ürünülerinizi beğenmezseniz veya bir sorun ile karşılaşırsanız paranız iade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Icon Box -->
+            <div class="col-lg-4 icon_box_col">
+                <div class="icon_box">
+                    <div class="icon_box_image"><img src="{{ asset('images') }}/icon_3.svg" alt=""></div>
+                    <div class="icon_box_title">7/24 Tam Destek</div>
+                    <div class="icon_box_text">
+                        <p>Online veya telefon ile 7 gün 24 saat yanınızdayız.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Newsletter -->
+
+<div class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="newsletter_border"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="newsletter_content text-center">
+                    <div class="newsletter_title">En son haberler için abone olun.</div>
+                    <div class="newsletter_text"><p>Fiyatlardaki veya Stoklardaki en son gelişmelerden ilk sizin haberiniz olsun.</p></div>
+                    <div class="newsletter_form_container">
+                        <form action="#" id="newsletter_form" class="newsletter_form">
+                            <input type="email" class="newsletter_input" required="required">
+                            <button class="newsletter_button trans_200"><span>Abone Ol</span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

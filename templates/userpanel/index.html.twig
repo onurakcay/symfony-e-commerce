@@ -1,0 +1,50 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}Üye Listesiiii{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row"><h1>Profil</h1> <a href="{{ path('admin_user_new') }}"class="btn btn-block btn-success">Üye Ekle</a></div>
+        <div class="row"style="margin-top:3%">
+            <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ app.user.id }}</td>
+                <td>{{ app.user.email }}</td>
+                <td>{% for item in app.user.roles %}
+                    {% if item == "ROLE_ADMIN" %} ADMIN {% else %} USER {% endif %}
+                    {% endfor %}</td>
+
+                <td>{{ app.user.name }}</td>
+                <td>{{ app.user.status }}</td>
+                <td>
+                    <a href="{{ path('admin_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('admin_user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

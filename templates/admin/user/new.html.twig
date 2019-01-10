@@ -1,0 +1,20 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1>Üye Ekle</h1>
+        <div class="row"style="margin-top:3%">
+
+    {{ include('admin/user/_form.html.twig') }}
+
+    <a href="{{ path('admin_user_index') }}">back to list</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

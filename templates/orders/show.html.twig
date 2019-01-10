@@ -1,0 +1,114 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %}Sipariş Detayı{% endblock %}
+{% block sepet %} {{ sepet[0].sepetsayisi }} {% endblock %}
+
+
+{% block body %}
+
+<div class="products"style="margin-top: 10%;">
+    <center>
+        <div class="container"style="text-align: left">
+            <div class="row">
+                <div class="col"><h1>Sipariş Detayı</h1><hr>
+        <table class="table table-bordered table-light"style="color: black"><a href="{{ path('orders_index') }}">Sipariş listesine dön</a>
+        <tbody>
+            {#<tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Userid</th>
+                <td>{{ order.userid }}</td>
+            </tr>#}
+            <tr>
+                <th>Sipariş Fiyatı</th>
+                <td>{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <th>Ad</th>
+                <td>{{ order.name }}</td>
+            </tr>
+            <tr>
+                <th>Sipariş Adresi</th>
+                <td>{{ order.address }}</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>{{ order.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ order.phone }}</td>
+            </tr>
+            <tr>
+                <th>Gönderim Bilgisi</th>
+                <td>{{ order.shipinfo }}</td>
+            </tr>
+            <tr>
+                <th>Gönderim Durumu</th>
+                <td>{{ order.status }}</td>
+            </tr>
+            <tr>
+                <th>Not</th>
+                <td>{{ order.note }}</td>
+            </tr>
+        </tbody>
+    </table>
+            <table class="table table-striped"style="color: black">
+                <thead>
+                <tr>
+                    <th scope="col">Adı</th>
+                    <th scope="col">Satış Fiyatı</th>
+                    <th scope="col">Adedi</th>
+                    <th scope="col">Toplam Fiyat</th>
+                    <th scope="col">Durumu</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rs in orderdetail %}
+                <tr>
+                    <td>{{ rs.name }}</td>
+                    <td>{{ rs.price }}</td>
+                    <td>{{ rs.quantity }}</td>
+                    <td>{{ rs.amount }}</td>
+                    <td>{{ order.status }}</td>
+                </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </center>
+</div>
+        <script>
+            $(function () {
+                $('.navbar-toggle').click(function () {
+                    $('.navbar-nav').toggleClass('slide-in');
+                    $('.side-body').toggleClass('body-slide-in');
+                    $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+                    /// uncomment code for absolute positioning tweek see top comment in css
+                    //$('.absolute-wrapper').toggleClass('slide-in');
+
+                });
+
+                // Remove menu for searching
+                $('#search-trigger').click(function () {
+                    $('.navbar-nav').removeClass('slide-in');
+                    $('.side-body').removeClass('body-slide-in');
+
+                    /// uncomment code for absolute positioning tweek see top comment in css
+                    //$('.absolute-wrapper').removeClass('slide-in');
+
+                });
+            });</script>
+        {% endblock %}
+

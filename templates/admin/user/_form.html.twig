@@ -1,0 +1,38 @@
+<form action="" method="post"style="width: 100%">
+
+    <div class="form-group">
+        <label  class="control-label">Adı</label>
+        <input name="user[name]" type="text" class="form-control"  value="{{ user.name }}"required>
+
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">E-Postası</label>
+        <input name="user[email]" type="text" class="form-control"  value="{{ user.email }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Şifresi</label>
+        <input name="user[password]" type="text" class="form-control"  value="{{ user.password }}"required>
+    </div>
+
+
+    <div class="form-group">
+        <label >Yetki</label>
+        <select class="form-control selectpicker" data-style="btn btn-link"  name="user[roles]" >
+            <option style="color: black"selected>{{ user.roles|join }}</option>
+            <option style="color: black">ROLE_USER</option>
+            <option  style="color: black">ROLE_ADMIN</option>
+        </select>
+        <div class="form-group">
+            <label>Durum</label>
+        <select class="form-control selectpicker" data-style="btn btn-link"  name="user[status]" >
+            <option style="color: black"selected>{{ user.status }}</option>
+            <option  style="color: black">True</option>
+            <option  style="color: black">False</option>
+
+        </select>
+        </div>
+
+    </div>
+    <a href="{{ path('admin_user_index') }}" class="btn  btn-warning"><i class="material-icons"title="Back">arrow_back_ios</i></a><button type="submit" class="btn btn-primary "><i class="material-icons"title="Send">send</i></button>
+
+</form>

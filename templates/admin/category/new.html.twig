@@ -1,0 +1,19 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1>Kategori Ekle</h1>
+        <div class="row"style="margin-top:3%">
+
+    {{ include('admin/category/_form.html.twig') }}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

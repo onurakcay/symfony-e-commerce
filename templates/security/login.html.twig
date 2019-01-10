@@ -1,0 +1,85 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %}Kullanıcı Paneli{% endblock %}
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+{% block body %}
+
+
+<div class="row"style="margin-top:10%">
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+        <table class="table table-bordered table-light">
+            <thead>
+            <tr>
+                <th scope="col">Ad</th>
+                <th scope="col">{{ app.user.name }}</th>
+            </tr>
+            <tr>
+                <th scope="col">Mail</th>
+                <th scope="col">{{ app.user.email }}</th>
+            </tr>
+            <tr>
+                <th scope="col">Yetki</th>
+                <th scope="col">{% for item in app.user.roles %}{% if item == "ROLE_ADMIN" %}<b style="color:red">Yönetici</b>{% else %}Kullanıcı{% endif %}{%  endfor %}</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="col-lg-3"></div>
+</div>
+{% else %}
+    <div class="container" >
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+       <center>
+        <div class="card card-container col-lg-4" >
+<br>
+            {{ include('messages.html.twig') }}
+            <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+            <center><h1>Tekrar Merhaba</h1></center>
+            <br>
+            <center>ÖzTicaret - Kullanıcı Girişi</center><br><br>
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin" method="post">
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+
+                <input type="hidden" name="_csrf_token"
+                       value="{{ csrf_token('authenticate') }}"
+                ><br>
+                <button class="btn btn-lg btn-secondary  btn-signin" type="submit">Giriş Yap</button>
+                <a style="float:right"  href="{{ path('new_user') }}" style="font-size: 10px"  >Hesabın yok mu ?</a></br></br></br></br><br><br>
+            </form><!-- /form -->
+        </div><!-- /card-container -->
+       </center>
+    </div><!-- /container -->
+    {% endif %}
+<script>
+    $(function () {
+    $('.navbar-toggle').click(function () {
+    $('.navbar-nav').toggleClass('slide-in');
+    $('.side-body').toggleClass('body-slide-in');
+    $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+    /// uncomment code for absolute positioning tweek see top comment in css
+    //$('.absolute-wrapper').toggleClass('slide-in');
+
+    });
+
+    // Remove menu for searching
+    $('#search-trigger').click(function () {
+    $('.navbar-nav').removeClass('slide-in');
+    $('.side-body').removeClass('body-slide-in');
+
+    /// uncomment code for absolute positioning tweek see top comment in css
+    //$('.absolute-wrapper').removeClass('slide-in');
+
+    });
+    });</script>
+{% endblock %}

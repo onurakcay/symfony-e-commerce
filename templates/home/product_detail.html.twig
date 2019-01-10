@@ -1,0 +1,121 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} Ürün Detayı - {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+
+    {% block body%}
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins') }}/OwlCarousel2-2.2.1/owl.carousel.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins') }}/OwlCarousel2-2.2.1/owl.theme.default.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins') }}/OwlCarousel2-2.2.1/animate.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles') }}/product.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins') }}/product_responsive.css">
+
+
+        <!-- Product Details -->
+
+
+
+        <!-- Product Details -->
+
+        <div class="product_details">
+            <div class="container">
+                <div class="row details_row">
+
+                    <!-- Product Image -->
+                    <div class="col-lg-6">
+                        <div class="details_image">
+
+                        <div class="details_image_large"><img width="600"height="300" src="{{ asset('uploads') }}/images/{{ data[0].image }}" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
+                            <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
+                                {%  for rs in images %}
+                                <div class="details_image_thumbnail active" data-image="{{ asset('uploads') }}/images/{{ rs.image }}"><img width="180" height="100" src="{{ asset('uploads') }}/images/{{ rs.image }}" alt=""></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Content -->
+                    <div class="col-lg-6">
+                        <div class="details_content">
+                            <div class="details_name">{{ data[0].title }}</div>
+                            <form name="shopchart" id="chartform"action="{{ path('shopcart_new') }}" method="post">
+                            <div class="details_discount">890TR</div>
+                            <div class="details_price">{{ data[0].sprice }} TL</div>
+
+                            <!-- In Stock -->
+                            <div class="in_stock_container">
+                                <div class="availability">Uygunluk:</div>
+                                <span>Stokta Var</span>
+                            </div>
+                            <div class="details_text">
+                                {{data[0].description  }}
+                            </div>
+
+                            <!-- Product Quantity -->
+                            <div class="product_quantity_container">
+                                <div class="product_quantity clearfix">
+                                    <span>Adet</span>
+                                    <input id="quantity_input" name="shopcart[quantity]"  type="text" pattern="[0-9]*" value="1" max="{{ data[0].amount }}">
+                                    <input type="hidden" name="shopcart[productid]" value="{{ data[0].id }}">
+                                    <input type="hidden" name="shopcart[total]" value="{{ (data[0].amount*data[0].sprice) }}">
+                                    <div class="quantity_buttons">
+                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="token" value="{{ csrf_token('add_item') }}">
+                                <div class="button cart_button"><a  id="chart">Sepete Ekle</a></div>
+                                <script>
+                                    document.getElementById("chart").onclick = function() {
+                                        document.getElementById("chartform").submit();
+                                    }
+                                </script>
+                            </div>
+                            </form>
+                            <!-- Share -->
+                            <div class="details_share">
+                                <span>Share:</span>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row description_row">
+                    <div class="col">
+                        <div class="description_title_container">
+                            <div class="description_title">Açıklama</div>
+
+                        </div>
+                        <div class="description_text">
+                            <p>{{ data[0].detail |raw }}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script src="{{ asset('js') }}/jquery-3.2.1.min.js"></script>
+        <script src="{{ asset('styles') }}/bootstrap4/popper.js"></script>
+        <script src="{{ asset('styles') }}/bootstrap4/bootstrap.min.js"></script>
+        <script src="{{ asset('plugins') }}/greensock/TweenMax.min.js"></script>
+        <script src="{{ asset('plugins') }}/greensock/TimelineMax.min.js"></script>
+        <script src="{{ asset('plugins') }}/scrollmagic/ScrollMagic.min.js"></script>
+        <script src="{{ asset('plugins') }}/greensock/animation.gsap.min.js"></script>
+        <script src="{{ asset('plugins') }}/greensock/ScrollToPlugin.min.js"></script>
+        <script src="{{ asset('plugins') }}/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+        <script src="{{ asset('plugins') }}/Isotope/isotope.pkgd.min.js"></script>
+        <script src="{{ asset('plugins') }}/easing/easing.js"></script>
+        <script src="{{ asset('plugins') }}/parallax-js-master/parallax.min.js"></script>
+        <script src="{{ asset('js') }}/product.js"></script>
+    {% endblock %}

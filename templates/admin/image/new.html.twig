@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Image to Gallery{% endblock %}
+
+{% block body %}
+    <h1>Add new Image</h1>
+
+    {{ include('admin/image/_form.html.twig') }}
+
+    {% for image in imageList  %}
+
+        <img style="width: 170px;height: 170px;" src="{{ asset('uploads') }}/images/{{ image.image }}">
+        <a href="{{ path('admin_image_del',{'id':image.id,'pid':image.productid}) }}" onclick="return confirm('Silinecek emin misin ?');" class="btn btn-lg btn-danger" >Sil</a><br>
+
+    {% endfor %}
+
+
+{% endblock %}

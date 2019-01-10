@@ -1,0 +1,90 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} İletişim - {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+    {% block body%}
+
+        <!-- Home -->
+        <link rel="stylesheet" type="text/css" href="{{ asset("styles") }}/contact.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset("styles") }}/contact_responsive.css">
+        <div class="home">
+            <div class="home_container">
+                <div class="home_background" style="background-image:url({{ asset('images') }}/contact.jpg)"></div>
+                <div class="home_content_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="home_content">
+                                    <div class="breadcrumbs">
+                                        <ul>
+                                            <li><a href="index.html">Anasayfa</a></li>
+                                            <li>İletişim</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact -->
+
+        <div class="contact">
+            <div class="container">
+                {{ include('home/messages.html.twig') }}
+                <div class="row">
+
+                    <!-- Get in touch -->
+                    <div class="col-lg-8 contact_col">
+                        <div class="get_in_touch">
+                            <div class="section_title">İletişimde Kalalım</div>
+                            <div class="section_subtitle">Merhaba</div>
+                            <div class="contact_form_container">
+
+
+                                <form action="#" method="post" name="messages" id="contact_form" class="contact_form">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <!-- Name -->
+                                            <label for="contact_name">Adın*</label>
+                                            <input type="text" name="messages[name]" id="contact_name" class="contact_input" required="required">
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <!-- Name -->
+                                            <label for="contact_name">E-Mailin*</label>
+                                            <input type="text" name="messages[email]" id="contact_name" class="contact_input" required="required">
+                                        </div>
+
+                                    </div>
+                                    <div>
+                                        <!-- Subject -->
+                                        <label for="contact_company">Konun</label>
+                                        <input type="text" name="messages[subject]" id="contact_company" class="contact_input">
+                                    </div>
+                                    <div>
+                                        <label for="contact_textarea">Mesajın*</label>
+                                        <textarea id="contact_textarea" name="messages[message]" class="contact_input contact_textarea" required="required"></textarea>
+                                    </div>
+                                    <input type="hidden" name="token" value="{{ csrf_token('form-message') }}"/>
+                                    <button class="button contact_button"><span>Mesaj Gönder</span></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="col-lg-3 offset-xl-1 contact_col">
+                        <div class="contact_info">
+                            {{  data[0].contact|raw }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {% endblock %}

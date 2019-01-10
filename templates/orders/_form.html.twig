@@ -1,0 +1,161 @@
+<div class="home">
+    <div class="home_container">
+        <div class="home_background" style="background-image:url({{ asset('images') }}/cart.jpg)"></div>
+        <div class="home_content_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_content">
+                            <div class="breadcrumbs">
+                                <ul>
+                                    <li><a href="{{ path('home') }}">Anasayfa</a></li>
+                                    <li><a href="{{ path('shopcart_index') }}">Sepetim</a></li>
+                                    <li>Ödeme Adımı</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Checkout -->
+<form method="post"action="" id="orderform">
+<div class="checkout">
+    <div class="container">
+        <div class="row">
+
+            <!-- Billing Info -->
+            <div class="col-lg-6">
+                <div class="billing checkout_section">
+                    <div class="section_title">Kargo Alıcı Bilgileri</div>
+                    <div class="section_subtitle"></div>
+                    <div class="checkout_form_container">
+                        <form action="#" id="checkout_form" class="checkout_form">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <!-- Name -->
+                                    <label for="checkout_name">Ad Soyad</label>
+                                    <input type="text" name="orders[name]" id="checkout_name" class="checkout_input" required="required" value="{{ app.user.name }}">
+                                </div>
+                            </div>
+                            <div>
+                                <!-- Company -->
+                                <label for="checkout_company">Adresi</label>
+                                <input type="text" name="orders[address]" id="checkout_company" class="checkout_input"value="{{ app.user.address }}">
+                            </div>
+                            <div>
+                                <!-- Company -->
+                                <label for="checkout_company">Şehir</label>
+                                <input type="text" name="orders[city]" id="checkout_company" class="checkout_input"value="{{ app.user.city }}">
+                            </div>
+                            <div>
+                                <!-- Company -->
+                                <label for="checkout_company">Telefon</label>
+                                <input type="text" name="orders[phone]" id="checkout_company" class="checkout_input"value="{{ app.user.phone }}">
+                            </div>
+                            <div class="section_title">Ödeme Bilgileri</div>
+                            <div class="section_subtitle">Kart bilgilerini giriniz</div>
+                            <div>
+                                <!-- Zipcode -->
+                                <label for="checkout_zipcode">Adı Soyadı ( Kart sahibinin )</label>
+                                <input type="text" id="checkout_zipcode" class="checkout_input" required="required">
+                            </div>
+                            <div>
+                                <!-- Zipcode -->
+                                <label for="checkout_zipcode">Kart Numarası</label>
+                                <input type="text" id="checkout_zipcode" class="checkout_input" required="required">
+                            </div>
+                             <div>
+                                <!-- Zipcode -->
+                                <label for="checkout_zipcode">Son Kullanma Tarihi</label>
+                                <input type="text" id="checkout_zipcode" class="checkout_input" required="required">
+                            </div>
+                             <div>
+                                <!-- Zipcode -->
+                                <label for="checkout_zipcode">Güvelik Kodu</label>
+                                <input type="text" id="checkout_zipcode" class="checkout_input" required="required">
+                            </div>
+
+
+
+
+                            {#<div class="checkout_extra">
+                                <div>
+                                    <input type="checkbox" id="checkbox_terms" name="regular_checkbox" class="regular_checkbox" checked="checked">
+                                    <label for="checkbox_terms"><img src="images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Terms and conditions</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="checkbox_account" name="regular_checkbox" class="regular_checkbox">
+                                    <label for="checkbox_account"><img src="images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Create an account</span>
+                                </div>
+                                <div>
+                                    <input type="checkbox" id="checkbox_newsletter" name="regular_checkbox" class="regular_checkbox">
+                                    <label for="checkbox_newsletter"><img src="images/check.png" alt=""></label>
+                                    <span class="checkbox_title">Subscribe to our newsletter</span>
+                                </div>
+                            </div>#}
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Info -->
+
+            <div class="col-lg-6">
+                <div class="order checkout_section">
+                    <div class="section_title">Siparişin</div>
+                    <div class="section_subtitle">Sipariş Detayları</div>
+
+                    <!-- Order details -->
+                    <div class="order_list_container">
+
+                        <div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
+                            <div class="order_list_title">Ürün</div>
+                            <div class="order_list_value ml-auto">Fiyat</div>
+                        </div>
+                        <ul class="order_list">
+                            {% for shopcart in shopcarts %}
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">{{ shopcart.title }} x {{ shopcart.quantity }} </div>
+                                <div class="order_list_value ml-auto">{{ (shopcart.sprice*shopcart.quantity) }}</div>
+                            </li>
+                            {% endfor %}
+                            <hr><br>
+                            {% for totall in sonuc %}
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">Ara Toplam</div>
+                                <div class="order_list_value ml-auto">{{ totall.total }} TL</div>
+                            </li>
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">Kargo</div>
+                                <div class="order_list_value ml-auto">Ücretsiz</div>
+                            </li>
+
+
+                            <li class="d-flex flex-row align-items-center justify-content-start">
+                                <div class="order_list_title">Toplam Fiyat</div>
+                                <div class="order_list_value ml-auto" name="orders[amount]"> {{ totall.total }} TL {% endfor %}</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Payment Options -->
+
+                    <div class="button order_button"><a id="order" href="#">Siparişi Tamamla</a></div>
+                    <script>
+                        document.getElementById("order").onclick = function() {
+                            document.getElementById("orderform").submit();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</form>

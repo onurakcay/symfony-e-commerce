@@ -1,0 +1,21 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1>Düzenle</h1>
+        <div class="row"style="margin-top:3%">
+
+    {{ include('admin/category/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <h1>Düzenle</h1>
+        <div class="row"style="margin-top:3%">
+    <div class="well">
+
+        {{ include('messages.html.twig') }}
+
+        <h2>Sipariş Detayı</h2>
+        <table class="table table-warning">
+
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Kullanıcı</th>
+                <td>{{ order.userid }}</td>
+            </tr>
+            <tr>
+                <th>Miktar</th>
+                <td>{{ order.amount }}</td>
+            </tr>
+            <tr>
+                <th>İsim</th>
+                <td>{{ order.name }}</td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td>{{ order.address }}</td>
+            </tr>
+            <tr>
+                <th>Şehir</th>
+                <td>{{ order.city }}</td>
+            </tr>
+            <tr>
+                <th>Telefon</th>
+                <td>{{ order.phone }}</td>
+            </tr>
+            <tr>
+                <th>Kargo Bilgisi</th>
+                <td>{{ order.shipinfo }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ order.status }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ order.note }}</td>
+            </tr>
+
+            <form action="{{ path('admin_orders_update', {'id': order.id}) }}" method="post">
+                <tr>
+                    <th>Shipinfo</th>
+                    <td><textarea name="shipinfo" cols="100" rows="3">{{ order.shipinfo }}</textarea></td>
+                </tr>
+                <tr>
+                    <th>Admin Note</th>
+                    <td><textarea name="note" cols="100" rows="3">{{ order.note }}</textarea></td>
+
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <select name="status">
+                            <option>{{ order.status }}</option>
+                            <option>Onaylandı</option>
+                            <option>Kargoya Verildi</option>
+                            <option>İptal Edildi</option>
+                            <option>Tamamlandı</option>
+
+                        </select>
+                        <input type="submit" value="Güncelle">
+                    </td>
+                </tr>
+
+            </form>
+
+            </tbody>
+        </table>
+            <table class="table table-warning">
+                <thead>
+                <tr>
+                    <th scope="col">Adı</th>
+                    <th scope="col">Satış Fiyatı</th>
+                    <th scope="col">Adedi</th>
+                    <th scope="col">Toplam Fiyat</th>
+                    <th scope="col">Durumu</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for detail in orderdetail %}
+                <tr>
+                    <td>{{ detail.name }}</td>
+                    <td>{{ detail.price }}</td>
+                    <td>{{ detail.quantity }}</td>
+                    <td>{{ detail.amount }}</td>
+                    <td>{{ detail.status }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+
+
+    <a href="{{ path('admin_orders_index',{'slug':'new'}) }}">back to list</a>
+    </div>
+        </div>
+    </div>
+    </div>
+
+    {% endblock %}

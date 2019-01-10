@@ -1,0 +1,56 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row"><h1>Kategori Listesi</h1> <a href="{{ path('admin_category_new') }}"class="btn btn-block btn-success">Kategori Ekle</a></div>
+        <div class="row"style="margin-top:3%">
+            <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Parentid</th>
+                <th>Title</th>
+                <th>Keywords</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Göster</th>
+                <th>Düzenle</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.parentid }}</td>
+                <td>{{ category.title }}</td>
+                <td>{{ category.keywords }}</td>
+                <td>{{ category.description }}</td>
+                <td>{{ category.status }}</td>
+                <td>
+                    <a href="{{ path('admin_category_show', {'id': category.id}) }}"class="btn btn-sm btn-primary"title="Göster"><i class="material-icons">remove_red_eye</i></a>
+                </td>
+                <td>
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}"class="btn btn-sm btn-secondary"title="Düzenle"><i class="material-icons">edit</i></a>
+                </td>
+                <td>
+                    <a href="{{ path('admin_category_delete', {'id': category.id}) }}"class="btn btn-sm btn-danger"title="Sil"><i class="material-icons">close</i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

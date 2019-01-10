@@ -1,0 +1,66 @@
+<form action="#" method="post"style="width: 100%">
+
+    <div class="form-group">
+        <label  class="control-label">Parent ID</label>
+
+        <select name="product[category_id]" class="form-control">
+            {% if (catname) %}
+                <option style="color: black" value="{{ product.categoryid }}">{{ catname[0].title }}</option>
+            {% endif %}
+            {% for cat in catlist %}
+                <option style="color: black"value="{{ cat.id }}">{{ cat.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Title</label>
+        <input name="product[title]" type="text" class="form-control"  value="{{ product.title }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Keywords</label>
+        <input name="product[keywords]" type="text" class="form-control"  value="{{ product.keywords }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Description</label>
+        <input name="product[description]" type="text" class="form-control"  value="{{ product.description }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Alış Fiyatı</label>
+        <input name="product[pprice]" type="text" class="form-control"  value="{{ product.pprice }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Satış Fiyatı</label>
+        <input name="product[sprice]" type="text" class="form-control"  value="{{ product.sprice }}"required>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label">Miktar</label>
+        <input name="product[amount]" type="text" class="form-control"  value="{{ product.amount }}"required>
+    </div>
+
+    <div class="form-group">
+        <label >Example select</label>
+        <select class="form-control selectpicker" data-style="btn btn-link"  name="product[status]" required>
+            <option style="color: black"hidden>{{ product.status }}</option>
+            <option style="color: black"selected>True</option>
+            <option  style="color: black">False</option>
+
+        </select>
+
+    </div>
+    <div class="form-group">
+        <label >Detaylar</label><br>
+
+        <textarea name="product[detail]" id="editor" class="form-control" placeholder="Here can be your nice text" rows="10" value="{{ product.detail }}">{{ product.detail }}</textarea>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+
+    </div>
+    <a href="{{ path('admin_product_index') }}" class="btn  btn-warning"><i class="material-icons"title="Back">arrow_back_ios</i></a><button type="submit" class="btn btn-primary "><i class="material-icons"title="Send">send</i></button>
+
+
+</form>

@@ -1,0 +1,25 @@
+{% extends 'frontbase.html.twig' %}
+{% block title %}Üye Listesi{% endblock %}
+{% block sepet %} {{ sepet[0].sepetsayisi }} {% endblock %}
+
+
+
+{% block body %}
+
+    <div class="products"style="margin-top: 10%;">
+        <center>
+            <div class="container"style="text-align: left"><h1>Bilgilerini Güncelle</h1><hr>
+                <div class="row">
+                    <div class="col">
+    {{ include('userpanel/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('userpanel') }}">Geri Dön</a>
+
+   {# {{ include('userpanel/_delete_form.html.twig') }}#}
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+{% endblock %}

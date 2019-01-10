@@ -1,0 +1,61 @@
+{% extends 'adminbase.html.twig' %}
+{% block title %}Mesaj Listesi{% endblock %}
+
+
+
+{% block content %}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row"><h1>Mesaj Listesi</h1></div>
+        {{ include('admin/messages.html.twig') }}
+
+        <div class="row"style="margin-top:3%">
+            <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Comment</th>
+                <th>Status</th>
+                <th>Göster</th>
+                <th>Sil</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td>{{ message.id }}</td>
+                <td>{{ message.name }}</td>
+                <td>{{ message.email }}</td>
+                <td>{{ message.subject }}</td>
+                <td>{{ message.message }}</td>
+                <td>{{ message.comment }}</td>
+                <td>{{ message.status }}</td>
+                <td>
+                    <a href="{{ path('admin_messages_show', {'id': message.id}) }}"class="btn btn-sm btn-primary"title="Göster"><i class="material-icons">remove_red_eye</i></a>
+
+                </td>
+                <td>
+                    {{ include('admin/messages/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {#<a href="{{ path('admin_messages_new') }}">Create new</a>#}
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

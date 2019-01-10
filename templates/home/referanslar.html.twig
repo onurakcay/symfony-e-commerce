@@ -1,0 +1,22 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %} Referanslar - {{ data[0].title }} {% endblock %}
+{% block keywords %} {{ data[0].keywords }} {% endblock %}
+{% block description %} {{ data[0].description }} {% endblock %}
+{% block sepet %} {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ sepet[0].sepetsayisi }}{% else %} 0 {% endif %} {% endblock %}
+
+    {% block body%}
+<div class="products"style="margin-top: 10%">
+    <center>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+
+    {{  data[0].referances|raw }}
+
+            </div>
+        </div>
+    </div>
+    </center>
+</div>
+    {% endblock %}

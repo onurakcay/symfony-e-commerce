@@ -1,0 +1,142 @@
+<form action="" method="post"style="width: 100%">
+<div class="card card-nav-tabs ">
+    <div class="card-header card-header-primary ">
+        <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+        <div class="nav-tabs-navigation">
+            <div class="nav-tabs-wrapper">
+                <ul class="nav nav-tabs" data-tabs="tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#genel" data-toggle="tab">
+                            <i class="material-icons">person</i> Genel Bilgiler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#email" data-toggle="tab">
+                            <i class="material-icons">email</i> Email Server
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#hakkimizda" data-toggle="tab">
+                            <i class="material-icons">info</i> Hakkımızda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#iletisim" data-toggle="tab">
+                            <i class="material-icons">contact_phone</i> İletişim
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#referanslar" data-toggle="tab">
+                            <i class="material-icons">supervised_user_circle</i> Referanslar
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-body ">
+        <div class="tab-content text-left">
+            <div class="tab-pane active" id="genel">
+                <h4><b>Genel Bilgiler</b></h4><br>
+                <div class="form-group">
+                    <label for="" class="control-label">Adı</label>
+                    <input name="setting[title]" type="text" class="form-control"  value="{{ setting.title }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Anahtar Kelimeler</label>
+                    <input name="setting[keywords]" type="text" class="form-control"  value="{{ setting.keywords }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Kısa Açıklama</label>
+                    <input name="setting[description]" type="text" class="form-control"  value="{{ setting.description }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Firma Adı</label>
+                    <input name="setting[company]" type="text" class="form-control"  value="{{ setting.company }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Adresi</label>
+                    <input name="setting[address]" type="text" class="form-control"  value="{{ setting.address }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Fax</label>
+                    <input name="setting[fax]" type="text" class="form-control"  value="{{ setting.fax }}">
+                </div>
+
+            </div>
+            <div class="tab-pane" id="email">
+                <div class="form-group">
+                    <label for="" class="control-label">SMTP Server</label>
+                    <input name="setting[smtpserver]" type="text" class="form-control"  value="{{ setting.smtpserver }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">SMTP Email</label>
+                    <input name="setting[smtpemail]" type="text" class="form-control"  value="{{ setting.smtpemail }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">SMTP Email</label>
+                    <input name="setting[smtpemail]" type="text" class="form-control"  value="{{ setting.smtpemail }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Email Şifre</label>
+                    <input name="setting[smtppassword]" type="text" class="form-control"  value="{{ setting.smtppassword }}">
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">SMTP Port</label>
+                    <input name="setting[smtpport]" type="text" class="form-control"  value="{{ setting.smtpport }}">
+                </div>
+
+
+            </div>
+            <div class="tab-pane" id="hakkimizda">
+                <div class="form-group">
+                    <label >Hakkımızda</label><br>
+
+                    <textarea name="setting[aboutus]" id="editor" class="form-control" placeholder="Here can be your nice text" rows="10" value="{{ setting.aboutus }}">{{ setting.aboutus }}</textarea>
+                    <script>
+                        ClassicEditor
+                            .create( document.querySelector( '#editor' ) )
+                            .catch( error => {
+                                console.error( error );
+                            } );
+                    </script>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="iletisim">
+                <div class="form-group">
+                    <label >İletişim</label><br>
+
+                    <textarea name="setting[contact]" id="editorr" class="form-control" placeholder="Here can be your nice text" rows="10" value="{{ setting.contact }}">{{ setting.contact }}</textarea>
+                    <script>
+                        ClassicEditor
+                            .create( document.querySelector( '#editorr' ) )
+                            .catch( error => {
+                                console.error( error );
+                            } );
+                    </script>
+
+                </div>
+            </div>
+            <div class="tab-pane" id="referanslar">
+                <div class="form-group">
+                    <label >Referanslar</label><br>
+
+                    p<textarea name="setting[referances]" id="editorrr" class="form-control" placeholder="Here can be your nice text" rows="10" value="{{ setting.referances }}">{{ setting.referances }}</textarea>
+                    <script>
+                        ClassicEditor
+                            .create( document.querySelector( '#editorrr' ) )
+                            .catch( error => {
+                                console.error( error );
+                            } );
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <button type="submit" class="btn btn-primary "><i class="material-icons"title="Send">send</i></button>
+
+</form>
